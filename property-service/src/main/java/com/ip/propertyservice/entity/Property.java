@@ -1,9 +1,6 @@
 package com.ip.propertyservice.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.NotNull;
 
 import java.time.LocalDateTime;
@@ -29,6 +26,16 @@ public class Property {
 
     private LocalDateTime updated_date;
 
+
+    @PrePersist
+    public void onCreate(){
+        this.created_date = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void onUpdate(){
+        this.updated_date = LocalDateTime.now();
+    }
 
     public UUID getId() {
         return id;
